@@ -180,20 +180,23 @@ alias mensa="curl -q https://mensaplan.leet.fan/"
 alias -g G="| grep --color=auto -i"
 alias cat="bat --paging=never"
 
-alias nfu='
-nix flake update --flake /srv/dotfiles/nix-flakes/kubernetes/ && \
-nix flake update --flake /srv/dotfiles/nix-flakes/go/ && \
-nix flake update --flake /srv/dotfiles/nix-flakes/ai/ && \
-nix flake update --flake /srv/dotfiles/nix-flakes/web/ && \
-nix flake update --flake /srv/dotfiles/nix-flakes/windows/ && \
-nix flake update --flake /srv/dotfiles/nix-flakes/python/ && \
-nix flake update --flake /srv/dotfiles/nix-flakes/pandoc/'
 
 # Nix stuff
-alias ksh="nix develop /srv/dotfiles/nix-flakes/kubernetes/ -c zsh"
-alias gosh="nix develop /srv/dotfiles/nix-flakes/go/ -c zsh"
-alias aish="nix develop --impure /srv/dotfiles/nix-flakes/ai/ -c zsh"
-alias websh="nix develop /srv/dotfiles/nix-flakes/web/ -c zsh"
-alias windowssh="nix develop /srv/dotfiles/nix-flakes/windows/ -c zsh"
-alias texsh="nix develop /srv/dotfiles/nix-flakes/pandoc/ -c zsh"
-alias pysh="nix develop /srv/dotfiles/nix-flakes/python/ -c zsh"
+dotfiles_dir = $HOME/.config/dotfiles
+
+alias nfu='
+nix flake update --flake $dotfiles_dir/nix-flakes/kubernetes/ && \
+nix flake update --flake $dotfiles_dir/nix-flakes/go/ && \
+nix flake update --flake $dotfiles_dir/nix-flakes/ai/ && \
+nix flake update --flake $dotfiles_dir/nix-flakes/web/ && \
+nix flake update --flake $dotfiles_dir/nix-flakes/windows/ && \
+nix flake update --flake $dotfiles_dir/nix-flakes/python/ && \
+nix flake update --flake $dotfiles_dir/nix-flakes/pandoc/'
+
+alias ksh="nix develop $dotfiles_dir/nix-flakes/kubernetes/ -c zsh"
+alias gosh="nix develop $dotfiles_dir/nix-flakes/go/ -c zsh"
+alias aish="nix develop --impure $dotfiles_dir/nix-flakes/ai/ -c zsh"
+alias websh="nix develop $dotfiles_dir/nix-flakes/web/ -c zsh"
+alias windowssh="nix develop $dotfiles_dir/nix-flakes/windows/ -c zsh"
+alias texsh="nix develop $dotfiles_dir/nix-flakes/pandoc/ -c zsh"
+alias pysh="nix develop $dotfiles_dir/nix-flakes/python/ -c zsh"
