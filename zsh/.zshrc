@@ -182,7 +182,7 @@ alias cat="bat --paging=never"
 
 
 # Nix stuff
-dotfiles_dir = $HOME/.config/dotfiles
+dotfiles_dir="$HOME/.config/dotfiles"
 
 alias nfu='
 nix flake update --flake $dotfiles_dir/nix-flakes/kubernetes/ && \
