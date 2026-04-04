@@ -180,10 +180,26 @@ alias mensa="curl -q https://mensaplan.leet.fan/"
 alias -g G="| grep --color=auto -i"
 alias cat="bat --paging=never"
 
-
-# Nix stuff
+# Specific config
 dotfiles_dir="$HOME/.config/dotfiles"
 
+check_repo_update() {
+    if [[ -d "$dotfiles_dir" ]]; then
+        (
+            cd "$dotfiles_dir" || return
+            REMOTE_HASH=$(curl -s "https://api.github.com/repos/p4ck3t0/dotfiles/commits/main" | grep '"sha"' | head -n 1 | cut -d '"' -f 4  || return)
+            LOCAL_HASH=$(git rev-parse HEAD)
+            if [ "$REMOTE_HASH" != "$LOCAL_HASH" ]; then
+                echo "------------------------------------------------"
+                echo "📢      DOTFILES SHOULD BE UPDATED!"
+                echo "------------------------------------------------"
+            fi
+        )
+    fi
+}
+check_repo_update
+
+# Nix stuff
 alias nfu='
 nix flake update --flake $dotfiles_dir/nix-flakes/kubernetes/ && \
 nix flake update --flake $dotfiles_dir/nix-flakes/go/ && \
@@ -200,3 +216,11 @@ alias websh="nix develop $dotfiles_dir/nix-flakes/web/ -c zsh"
 alias windowssh="nix develop $dotfiles_dir/nix-flakes/windows/ -c zsh"
 alias texsh="nix develop $dotfiles_dir/nix-flakes/pandoc/ -c zsh"
 alias pysh="nix develop $dotfiles_dir/nix-flakes/python/ -c zsh"
+
+# Nix-shell related
+if (( $+commands[kubectl] )); then
+    autoload -Uz compinit
+    compinit
+    source <(kubectl completion zsh)
+    alias k="kubectl"
+fi
