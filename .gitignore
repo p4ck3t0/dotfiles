@@ -1,0 +1,8 @@
+# ZSH
+zsh/zsh_history
+zsh/.zcompdump
+
+nvim/.swap/
+nvim/.undo/
+nvim/.backup/
+
