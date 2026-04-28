@@ -207,14 +207,14 @@ nix flake update --flake $dotfiles_dir/nix-flakes/ai/ && \
 nix flake update --flake $dotfiles_dir/nix-flakes/web/ && \
 nix flake update --flake $dotfiles_dir/nix-flakes/windows/ && \
 nix flake update --flake $dotfiles_dir/nix-flakes/python/ && \
-nix flake update --flake $dotfiles_dir/nix-flakes/doc/'
+nix flake update --flake $dotfiles_dir/nix-flakes/docs/'
 
 alias ksh="nix develop $dotfiles_dir/nix-flakes/kubernetes/ -c zsh"
 alias gosh="nix develop $dotfiles_dir/nix-flakes/go/ -c zsh"
 alias aish="nix develop --impure $dotfiles_dir/nix-flakes/ai/ -c zsh"
 alias websh="nix develop $dotfiles_dir/nix-flakes/web/ -c zsh"
 alias windowssh="nix develop $dotfiles_dir/nix-flakes/windows/ -c zsh"
-alias docsh="nix develop $dotfiles_dir/nix-flakes/doc/ -c zsh"
+alias docsh="nix develop $dotfiles_dir/nix-flakes/docs/ -c zsh"
 alias pysh="nix develop $dotfiles_dir/nix-flakes/python/ -c zsh"
 
 # Nix-shell related
