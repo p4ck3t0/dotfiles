@@ -14,6 +14,7 @@
             codex
             antigravity
             nodejs_24
+            claude-code
         ];
       };
     };
